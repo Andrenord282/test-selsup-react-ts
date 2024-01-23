@@ -160,6 +160,14 @@ interface ProductProps {
 }
 
 class ProductItem extends Component<ProductProps> {
+    constructor(props: ProductProps) {
+        super(props);
+
+        this.state = {
+            product: props.product,
+        };
+    }
+
     render() {
         const { product, openParamEditor } = this.props;
         const { model } = product;
@@ -258,6 +266,7 @@ class ParamEditor extends Component<ParamEditorProps, ParamEditorState> {
         } else {
             newParamsEditor.push({ paramId, value: newValue });
         }
+
         this.setState({ paramsEditor: newParamsEditor, paramsValue: newParamsValue });
     };
 
@@ -274,6 +283,7 @@ class ParamEditor extends Component<ParamEditorProps, ParamEditorState> {
             });
         }
     }
+
     render() {
         const { productId, updateProductParam, closeParamEditor } = this.props;
         const { paramList, paramsValue, paramsEditor } = this.state;
@@ -355,7 +365,7 @@ class App extends Component<{}, AppState> {
     updateProductParam = (productId: string, paramsValue: ParamValue[]) => {
         const index = this.state.productList.findIndex((prod) => prod.productId === productId);
         const newProductList = this.state.productList;
-        newProductList[index].model.paramValues = paramsValue;
+        newProductList[index].model.paramValues = paramsValue.filter((param) => param.value !== '');
         this.setState({ productList: newProductList, toiggleEditor: false });
     };
 
@@ -372,7 +382,8 @@ class App extends Component<{}, AppState> {
                     <p>
                         Если у товара есть значение параметра, то его видно и можно отредактировать. Если у товара нет
                         значения, то поле будет пустое, можно записать значение. Кнопка обновить выполнить обновления
-                        параметров товара
+                        параметров товара. Если очистить поле какого либо параметра и обновить продукт, то в карточке
+                        продукта удаленное поле не будет отображаться (карточка товара отображает заполненные значения)
                     </p>
                     <p>
                         Кусок примера был на классовом компненте, поэтмоу я задание делал на классах (мог и на хуках).

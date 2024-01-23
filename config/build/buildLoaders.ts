@@ -81,22 +81,29 @@ export const buildLoaders = (options: WebpackOptions): RuleSetRule[] => {
     }
 
     if (isProd) {
+        // const styleLoader: RuleSetRule = {
+        //     test: /\.scss$/i,
+        //     use: [
+        //         MiniCssExtractPlugin.loader,
+        //         {
+        //             loader: 'css-loader',
+        //             options: {
+        //                 modules: {
+        //                     localIdentName: '[hash:base64:8]',
+        //                 },
+        //             },
+        //         },
+        //         ,
+        //         'sass-loader',
+        //     ],
+        // };
+
         const styleLoader: RuleSetRule = {
             test: /\.scss$/i,
-            use: [
-                MiniCssExtractPlugin.loader,
-                {
-                    loader: 'css-loader',
-                    options: {
-                        modules: {
-                            localIdentName: '[hash:base64:8]',
-                        },
-                    },
-                },
-                ,
-                'sass-loader',
-            ],
+            exclude: /\.module\.scss$/,
+            use: ['style-loader', 'css-loader', 'sass-loader'],
         };
+
 
         rules.push(styleLoader);
     }
