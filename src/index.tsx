@@ -388,8 +388,12 @@ class App extends Component<{}, AppState> {
                     <p>
                         Кусок примера был на классовом компненте, поэтмоу я задание делал на классах (мог и на хуках).
                         Сделал в одном файле.{' '}
-                        <a href="https://github.com/Andrenord282/test-selsup-react-ts" target="_blank">
-                            репозиторий
+                        <a
+                            style={{ color: 'blue' }}
+                            href="https://github.com/Andrenord282/test-selsup-react-ts"
+                            target="_blank"
+                        >
+                            Репозиторий
                         </a>
                     </p>
                 </div>
