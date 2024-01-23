@@ -387,7 +387,10 @@ class App extends Component<{}, AppState> {
                     </p>
                     <p>
                         Кусок примера был на классовом компненте, поэтмоу я задание делал на классах (мог и на хуках).
-                        Сделал в одном файле. <a href="">репозиторий</a>
+                        Сделал в одном файле.{' '}
+                        <a href="https://github.com/Andrenord282/test-selsup-react-ts" target="_blank">
+                            репозиторий
+                        </a>
                     </p>
                 </div>
                 <ProductList productList={this.state.productList} openParamEditor={this.openParamEditor} />
